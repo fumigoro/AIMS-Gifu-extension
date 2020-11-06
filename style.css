@@ -1,0 +1,16 @@
+
+.file_drop_area{
+    padding:60px 0;
+    width:100%;
+    margin: 0 auto 20px;
+    background: #f6f6f6;
+    border: solid 3px #f6f6f6; 
+    text-align: center;
+}
+.file_drop_area.drag{
+    border: solid 3px rgb(75, 163, 204);
+}
+
+.file_drop_area input{
+    margin:0 auto;
+}
