@@ -4,10 +4,9 @@
     "manifest_version": 2,
     "content_scripts": [
       {
-        "matches": ["https://aims2.gifu-u.ac.jp/courses/*/assignments/*"],
+        "matches": ["file:///C:/Users/sakas/Downloads/%E3%82%AF%E3%82%A4%E3%82%BA_%20%E4%BA%94%E5%9B%9E%E7%9B%AE%E3%81%AE%E8%AC%9B%E7%BE%A9%E3%81%AE%E6%BC%94%E7%BF%92%E5%95%8F%E9%A1%8C.html"],
         "js": ["contents.js"],
         "css": ["style.css"]
       }
     ]
-
   }
