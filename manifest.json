@@ -4,9 +4,16 @@
     "manifest_version": 2,
     "content_scripts": [
       {
-        "matches": ["file:///C:/Users/sakas/Downloads/%E3%82%AF%E3%82%A4%E3%82%BA_%20%E4%BA%94%E5%9B%9E%E7%9B%AE%E3%81%AE%E8%AC%9B%E7%BE%A9%E3%81%AE%E6%BC%94%E7%BF%92%E5%95%8F%E9%A1%8C.html"],
+        "matches": ["https://aims2.gifu-u.ac.jp/courses/*"],
         "js": ["contents.js"],
         "css": ["style.css"]
       }
-    ]
+    ],
+    "description" : "AIMS-Gifuの課題提出ページにドラッグアンドドロップでファイルをアップロードするフィールドを追加する拡張",
+    "icons" : {
+      "16" : "icons/icon16.png",
+      "48" : "icons/icon48.png",
+      "128" : "icons/icon128.png"
+    }
+
   }

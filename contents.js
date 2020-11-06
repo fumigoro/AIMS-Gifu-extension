@@ -39,6 +39,8 @@ if (button[0]) {
         }
     })
     
-    }else{
-        console.log("【D&D-for-AIMS】提出機能が無効になっているページのため動作を行わず終了しました。");
-    };
+}else if(false){
+
+}else{
+    console.log("【D&D-for-AIMS】提出機能が無効になっているページのため動作を行わず終了しました。");
+};
