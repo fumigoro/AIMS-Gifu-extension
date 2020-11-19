@@ -3,7 +3,6 @@ uploadAreaTemp.className = 'file_drop_area';
 uploadAreaTemp.innerHTML = 'ファイルをドラックしてアップロード';
 
 const button = document.getElementsByClassName('Button Button--primary submit_assignment_link');
-const cancelButton = document.getElementsByClassName('cancel_button btn');
 
 if (button[0]) {
     window.addEventListener('load', () => {
@@ -41,9 +40,6 @@ if (button[0]) {
             });
         }
     });
-    cancelButton[0].addEventListener('click', () => {
-        document.getElementsByClassName('file_drop_area');
-    })
 
     
 };
