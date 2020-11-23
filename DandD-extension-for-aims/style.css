@@ -4,13 +4,13 @@
     width:100%;
     margin: 0 auto 20px;
     background: #f6f6f6;
-    border: solid 3px #f6f6f6; 
+    border: dashed 3px #2f3436; 
     text-align: center;
+    transition: all 0.25s cubic-bezier(0.21, 0.51, 0.51, 1);
+    font-weight: bold;
 }
 .file_drop_area.drag{
-    border: solid 3px rgb(75, 163, 204);
+    border: solid 3px #73C9D9; 
+    background:#73C9D9;
 }
 
-/* .file_drop_area input{
-    margin:0 auto;
-} */

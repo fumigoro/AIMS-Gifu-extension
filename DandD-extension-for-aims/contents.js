@@ -1,6 +1,6 @@
 const uploadAreaTemp = document.createElement('div');
 uploadAreaTemp.className = 'file_drop_area';
-uploadAreaTemp.innerHTML = 'ファイルをドラックしてアップロード';
+uploadAreaTemp.innerHTML = 'ファイルをドロップしてアップロード';
 
 const button = document.getElementsByClassName('Button Button--primary submit_assignment_link');
 
@@ -22,7 +22,7 @@ if (button[0]) {
         const uploadArea = document.getElementsByClassName('file_drop_area');
 
         for (let i=0;i<uploadArea.length;i++) {
-            //ドラッグしホーバーしている状態で実行
+            //ドラッグしホバーしている状態で実行
             uploadArea[i].addEventListener('dragover', (event) => {
                 event.preventDefault();
                 event.target.classList.add('drag');
