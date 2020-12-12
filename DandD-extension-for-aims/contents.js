@@ -8,12 +8,9 @@ if (button[0]) {
     window.addEventListener('load', () => {
 
         const formArea = document.getElementsByClassName('submission_attachment');
-        if(formArea.length === 0){
-            console.warn('フォームが存在しないタイプの課題ページのため動作を中止させました。');
-            return;
-        }
+
+        // 読み込み直後に存在するフォームの数が2つ以外の場合(2つではない場合は想定している課題ページではないため処理終了)
         if(formArea.length !==2){
-            console.warn('読み込み直後に存在するフォームの数が想定外です。動作を中止させました。検出したフォーム数:' + formArea.length);
             return;
         }
 
