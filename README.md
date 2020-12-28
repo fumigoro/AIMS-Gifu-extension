@@ -1,4 +1,4 @@
-# DandD-extension-for-aims
+# Drag and Drop Extension for AIMS
 
 国立大学法人東海国立大学機構 岐阜大学で運用されているLMS「AIMS-Gifu」ユーザー向けの拡張機能。
 この拡張機能を使用すると課題ページでファイルをドラッグアンドドロップでアップロードすることができる。
