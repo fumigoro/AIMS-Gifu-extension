@@ -1,7 +1,7 @@
 {
-    "name": "Drag and Drop Extension for AIMS",
-    "version": "1.0.0",
-    "manifest_version": 2,
+    "name": "AIMS-Gifu Extension",
+    "version": "2.0.0",
+    "manifest_version": 3,
     "content_scripts": [
       {
         "matches": ["https://aims2.gifu-u.ac.jp/courses/*"],
@@ -9,11 +9,10 @@
         "css": ["style.css"]
       }
     ],
-    "description" : "AIMS-Gifuの課題提出ページにドラッグアンドドロップでファイルをアップロードするフィールドを追加する拡張機能",
+    "description" : "AIMS-Gifuを便利にする拡張機能",
     "icons" : {
       "16" : "icons/icon16.png",
       "48" : "icons/icon48.png",
       "128" : "icons/icon128.png"
     }
-
   }
