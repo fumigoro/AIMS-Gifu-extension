@@ -1,5 +1,5 @@
 
-.file_drop_area{
+.file-drop-area{
     padding:60px 0;
     width:100%;
     margin: 0 auto 20px;
@@ -9,7 +9,7 @@
     transition: all 0.25s cubic-bezier(0.21, 0.51, 0.51, 1);
     font-weight: bold;
 }
-.file_drop_area.drag{
+.file-drop-area.drag{
     border: solid 3px #73C9D9; 
     background:#73C9D9;
 }
