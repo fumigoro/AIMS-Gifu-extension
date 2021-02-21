@@ -1,7 +1,7 @@
 {
     "name": "Drag and Drop Extension for AIMS",
     "version": "1.0.0",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "content_scripts": [
       {
         "matches": ["https://aims2.gifu-u.ac.jp/courses/*"],
