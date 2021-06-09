@@ -14,31 +14,54 @@ if (button[0]) {
         }
 
         const uploadAreaTemp = document.createElement('div');
+        uploadAreaTemp.id = 'file-drop-area';
         uploadAreaTemp.className = 'file-drop-area';
         uploadAreaTemp.innerHTML = 'ファイルをドロップしてアップロード';
 
-        formArea[0].appendChild(uploadAreaTemp.cloneNode(true));
+        document.querySelector("#submit_online_upload_form").prepend(uploadAreaTemp.cloneNode(true));
 
-        const uploadArea = document.getElementsByClassName('file-drop-area');
+        const uploadArea = document.querySelector('#file-drop-area');
 
-        for (let i = 0; i < uploadArea.length; i++) {
-            //ドラッグしホバーしている状態で実行
-            uploadArea[i].addEventListener('dragover', (event) => {
-                event.preventDefault();
-                event.target.classList.add('drag');
-            });
-            //ホーバーしているカーソルがD&Dエリアを出たとき実行
-            uploadArea[i].addEventListener('dragleave', (event) => {
-                event.target.classList.remove('drag');
-            });
-            //ドロップされたとき実行
-            uploadArea[i].addEventListener('drop', (event) => {
-                event.target.classList.remove('drag');
-                event.preventDefault();
-                const input = document.querySelectorAll('input[type="file"]');
-                input[i].files = event.dataTransfer.files;
-            });
-        }
+        //ドラッグしホバーしている状態で実行
+        uploadArea.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            event.target.classList.add('drag');
+        });
+        //ホーバーしているカーソルがD&Dエリアを出たとき実行
+        uploadArea.addEventListener('dragleave', (event) => {
+            event.target.classList.remove('drag');
+        });
+        //ドロップされたとき実行
+        uploadArea.addEventListener('drop', (event) => {
+            event.target.classList.remove('drag');
+            event.preventDefault();
+            const input = document.querySelectorAll('input[type="file"]');
+
+            const files = event.dataTransfer.files;
+
+            switch(files.length){
+                case 1:
+                    //ドロップされたファイルが1つのとき
+                    input[i].files = event.dataTransfer.files;
+                    break;
+                case 0:
+                    break;
+                default:
+                    //ドロップされたファイルが複数ある時
+                    for(let j=0;j<files.length-1;j++){
+                        document.querySelector('.add_another_file_link').click();
+                    }
+                    const newInput = document.querySelectorAll('input[type="file"]');
+                    for(let j=0;j<files.length;j++){
+                        const dt = new DataTransfer();
+                        dt.items.add(files[j]);
+                        newInput[j].files = dt.files;
+                    }
+                 
+            }
+            
+        });
+
     });
 
 
@@ -142,6 +165,8 @@ if (location.href.indexOf('files') != -1) {
             attributes: true,//「属性」の変化
             characterData: true,//「テキストノード」の変化
         });
+
+
 
 
 
