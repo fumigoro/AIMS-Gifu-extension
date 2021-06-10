@@ -172,3 +172,16 @@ if (location.href.indexOf('files') != -1) {
 
     });
 }
+
+//左上のナビゲーションに講義名を追加
+const url = window.location.pathname;
+if(url.split("/")[1]=="courses"){
+    const classCode = document.querySelectorAll(".ellipsible")[1].innerHTML;
+    let classTitle = document.title;
+    let classTitles = classTitle.split(':');
+    if(classTitles.length>1){
+        classTitles[0] = "";
+        classTitle = classTitles.join("");
+    }
+    document.querySelectorAll(".ellipsible")[1].innerHTML = classTitle + " / " + classCode;
+}
