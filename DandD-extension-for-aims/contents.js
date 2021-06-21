@@ -1,9 +1,7 @@
-const button = document.getElementsByClassName('Button Button--primary submit_assignment_link');
-
 /**
  * 課題ページでドラッグ＆ドロップフィールドを追加
  */
-if (button[0]) {
+if (location.href.indexOf('assignments') != -1) {
     window.addEventListener('load', () => {
 
         const formArea = document.getElementsByClassName('submission_attachment');
@@ -59,7 +57,7 @@ if (button[0]) {
                     return;
                 }
             }
-            
+
             //中身がカラのファイルInputがいくつあるか数える
             // 一番最後はクローン元のダミーなので除外
             let availableInputCount = 0;
@@ -74,7 +72,7 @@ if (button[0]) {
                     document.querySelector('.add_another_file_link').click();
                 }
                 //Inputを追加したので再度取得
-                input = document.querySelectorAll('input[type="file"]');    
+                input = document.querySelectorAll('input[type="file"]');
             }
 
             //カラのInputにファイルを挿入
@@ -100,7 +98,6 @@ if (button[0]) {
  * ファイルページで一括ダウンロード用のチェックボックスを追加
  */
 if (location.href.indexOf('files') != -1) {
-
 
     window.addEventListener('load', () => {
         const multiDlBtn = document.createElement('input');
@@ -194,23 +191,23 @@ if (location.href.indexOf('files') != -1) {
             attributes: true,//「属性」の変化
             characterData: true,//「テキストノード」の変化
         });
-
-
-
-
-
     });
 }
 
 //左上のナビゲーションに講義名を追加
 const url = window.location.pathname;
 if (url.split("/")[1] == "courses") {
-    const classCode = document.querySelectorAll(".ellipsible")[1].innerHTML;
-    let classTitle = document.title;
-    let classTitles = classTitle.split(':');
-    if (classTitles.length > 1) {
-        classTitles[0] = "";
-        classTitle = classTitles.join("");
-    }
-    document.querySelectorAll(".ellipsible")[1].innerHTML = classTitle + " / " + classCode;
+    window.addEventListener('load', () => {
+        if (document.querySelectorAll(".ellipsible").length < 2) {
+            return;
+        }
+        const classCode = document.querySelectorAll(".ellipsible")[1].innerHTML;
+        const classTitles = document.title.split(':');
+
+        for (let classTitle of classTitles) {
+            if (classTitle.indexOf('[') != -1) {
+                document.querySelectorAll(".ellipsible")[1].innerHTML = classTitle + " / " + classCode;
+            }
+        }
+    })
 }
