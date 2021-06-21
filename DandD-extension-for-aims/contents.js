@@ -12,15 +12,22 @@ if (button[0]) {
         if (formArea.length !== 2) {
             return;
         }
+        const uploadAreaMessageTmp = document.createElement('div');
+        uploadAreaMessageTmp.id = 'file-drop-area-message';
+        uploadAreaMessageTmp.className = 'file-drop-area-message';
+        uploadAreaMessageTmp.innerHTML = '';
 
         const uploadAreaTemp = document.createElement('div');
         uploadAreaTemp.id = 'file-drop-area';
         uploadAreaTemp.className = 'file-drop-area';
         uploadAreaTemp.innerHTML = 'ファイルをドロップしてアップロード';
 
+        document.querySelector("#submit_online_upload_form").prepend(uploadAreaMessageTmp.cloneNode(true));
         document.querySelector("#submit_online_upload_form").prepend(uploadAreaTemp.cloneNode(true));
 
         const uploadArea = document.querySelector('#file-drop-area');
+        const uploadAreaMessage = document.querySelector('#file-drop-area-message');
+
 
         //ドラッグしホバーしている状態で実行
         uploadArea.addEventListener('dragover', (event) => {
@@ -35,31 +42,53 @@ if (button[0]) {
         uploadArea.addEventListener('drop', (event) => {
             event.target.classList.remove('drag');
             event.preventDefault();
-            const input = document.querySelectorAll('input[type="file"]');
+            let input = document.querySelectorAll('input[type="file"]');
 
             const files = event.dataTransfer.files;
+            const items = event.dataTransfer.items;
+            console.log(event.dataTransfer.items[0].webkitGetAsEntry());
+            console.log(event.dataTransfer.files);
 
-            switch(files.length){
-                case 1:
-                    //ドロップされたファイルが1つのとき
-                    input[i].files = event.dataTransfer.files;
-                    break;
-                case 0:
-                    break;
-                default:
-                    //ドロップされたファイルが複数ある時
-                    for(let j=0;j<files.length-1;j++){
-                        document.querySelector('.add_another_file_link').click();
-                    }
-                    const newInput = document.querySelectorAll('input[type="file"]');
-                    for(let j=0;j<files.length;j++){
-                        const dt = new DataTransfer();
-                        dt.items.add(files[j]);
-                        newInput[j].files = dt.files;
-                    }
-                 
+            // ディレクトリがアップロードされていないかチェック
+            // AIMS側がディレクトリごと渡されることを想定していない可能性があるため
+            uploadAreaMessage.innerHTML = '';
+            for (let item of items) {
+                console.log(item);
+                if (item.webkitGetAsEntry().isDirectory) {
+                    uploadAreaMessage.innerHTML = 'フォルダーをアップロードすることはできません。';
+                    return;
+                }
             }
             
+            //中身がカラのファイルInputがいくつあるか数える
+            // 一番最後はクローン元のダミーなので除外
+            let availableInputCount = 0;
+            for (let j = 0; j < input.length - 1; j++) {
+                if (input[j].files.length == 0) {
+                    availableInputCount++;
+                }
+            }
+            //カラのInputが足りない場合
+            if (files.length > availableInputCount) {
+                for (let j = 0; j < files.length - availableInputCount; j++) {
+                    document.querySelector('.add_another_file_link').click();
+                }
+                //Inputを追加したので再度取得
+                input = document.querySelectorAll('input[type="file"]');    
+            }
+
+            //カラのInputにファイルを挿入
+            // 一番最後はクローン元のダミーなので除外
+            let filesIndex = 0;
+            for (let j = 0; j < input.length - 1; j++) {
+                if (input[j].files.length == 0) {
+                    const dt = new DataTransfer();
+                    dt.items.add(files[filesIndex]);
+                    input[j].files = dt.files;
+                    filesIndex++;
+                }
+            }
+
         });
 
     });
@@ -175,11 +204,11 @@ if (location.href.indexOf('files') != -1) {
 
 //左上のナビゲーションに講義名を追加
 const url = window.location.pathname;
-if(url.split("/")[1]=="courses"){
+if (url.split("/")[1] == "courses") {
     const classCode = document.querySelectorAll(".ellipsible")[1].innerHTML;
     let classTitle = document.title;
     let classTitles = classTitle.split(':');
-    if(classTitles.length>1){
+    if (classTitles.length > 1) {
         classTitles[0] = "";
         classTitle = classTitles.join("");
     }

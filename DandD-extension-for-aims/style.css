@@ -2,7 +2,7 @@
 .file-drop-area{
     padding:60px 0;
     width:100%;
-    margin: 0 auto 20px;
+    margin: 0 auto 0;
     background: #f6f6f6;
     border: dashed 3px #2f3436; 
     text-align: center;
@@ -26,4 +26,10 @@
 
 .multiselector{
     margin-left:5px !important;/*AIMS側のスタイルと競合するため*/
+}
+
+.file-drop-area-message{
+    margin: 5px auto 20px;
+    color: #EE0612;
+    
 }
