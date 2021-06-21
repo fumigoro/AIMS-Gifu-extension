@@ -2,16 +2,21 @@
 .file-drop-area{
     padding:60px 0;
     width:100%;
+    height: 100%;
     margin: 0 auto 0;
-    background: #f6f6f6;
-    border: dashed 3px #2f3436; 
     text-align: center;
-    transition: all 0.25s cubic-bezier(0.21, 0.51, 0.51, 1);
     font-weight: bold;
 }
-.file-drop-area.drag{
-    border: solid 3px #73C9D9; 
-    background:#73C9D9;
+.file-drop-area ,.extention-wrapper,.extention-title{
+    transition: all 0.25s cubic-bezier(0.21, 0.51, 0.51, 1);
+}
+.file-drop-area.drag ,.extention-wrapper.drag,.extention-title.drag{
+    background:#01A0FF;
+    color: white;
+    transition: all 0.25s cubic-bezier(0.21, 0.51, 0.51, 1);
+}
+.file-drop-area.drag {
+    font-size: 1.2rem;
 }
 
 #multiDlBtn{
@@ -29,7 +34,22 @@
 }
 
 .file-drop-area-message{
-    margin: 5px auto 20px;
+    margin: 5px;
+    font-weight: bold;
     color: #EE0612;
-    
+}
+.file-drop-area-message.drag{
+    color: transparent ;
+}
+
+
+.extention-wrapper{
+    border: solid 1px #01A0FF; 
+    border-radius: 0.2rem;
+    background: #f6f6f6;
+}
+.extention-title{
+    color: #01A0FF;
+    font-weight: bold;
+    padding-left: 0.5rem;
 }

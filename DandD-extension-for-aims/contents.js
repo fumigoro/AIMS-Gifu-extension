@@ -10,48 +10,87 @@ if (location.href.indexOf('assignments') != -1) {
         if (formArea.length !== 2) {
             return;
         }
-        const uploadAreaMessageTmp = document.createElement('div');
-        uploadAreaMessageTmp.id = 'file-drop-area-message';
-        uploadAreaMessageTmp.className = 'file-drop-area-message';
-        uploadAreaMessageTmp.innerHTML = '';
 
-        const uploadAreaTemp = document.createElement('div');
-        uploadAreaTemp.id = 'file-drop-area';
-        uploadAreaTemp.className = 'file-drop-area';
-        uploadAreaTemp.innerHTML = 'ファイルをドロップしてアップロード';
+        const extentionInnerHTML = `
+        <div class="extention-wrapper" id="extention-wrapper">
+            <div class="extention-title" id="extention-title">
+                AIMS-Gifu Extention
+            </div>
+            <div class="file-drop-area" id="file-drop-area">
+                ファイルをドロップしてアップロード
+            </div>
+            <div class="file-drop-area-message" id="file-drop-area-message">
 
-        document.querySelector("#submit_online_upload_form").prepend(uploadAreaMessageTmp.cloneNode(true));
-        document.querySelector("#submit_online_upload_form").prepend(uploadAreaTemp.cloneNode(true));
+            </div>
+        </div>
+        `;
+        const extentionWrapperTmp = document.createElement('div');
+        extentionWrapperTmp.className = 'extention-wrapper'
+        extentionWrapperTmp.innerHTML = extentionInnerHTML;
+
+        document.querySelector("#submit_online_upload_form").prepend(extentionWrapperTmp.cloneNode(true));
 
         const uploadArea = document.querySelector('#file-drop-area');
         const uploadAreaMessage = document.querySelector('#file-drop-area-message');
+        const extentionWrapper = document.querySelector('#extention-wrapper');
+
+        function addDragClass(){
+            document.querySelector('#file-drop-area-message').classList.add('drag');
+            document.querySelector('#file-drop-area').classList.add('drag');
+            document.querySelector('#extention-wrapper').classList.add('drag');
+        }
+        function removeDragClass(){
+            document.querySelector('#file-drop-area').classList.remove('drag');
+            document.querySelector('#file-drop-area-message').classList.remove('drag');
+            document.querySelector('#extention-wrapper').classList.remove('drag');
+        }
+        uploadArea.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            addDragClass();
+        });
+        uploadArea.addEventListener('dragleave', (event) => {
+            removeDragClass();
+        });
+        uploadArea.addEventListener('drop', (event) => {
+            removeDragClass();
+            event.preventDefault();
+        });
+        uploadAreaMessage.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            addDragClass();
+        });
+        uploadAreaMessage.addEventListener('dragleave', (event) => {
+            removeDragClass();
+        });
+        uploadAreaMessage.addEventListener('drop', (event) => {
+            removeDragClass();
+            event.preventDefault();
+
+        });
 
 
         //ドラッグしホバーしている状態で実行
-        uploadArea.addEventListener('dragover', (event) => {
+        extentionWrapper.addEventListener('dragover', (event) => {
             event.preventDefault();
-            event.target.classList.add('drag');
+            addDragClass();
         });
         //ホーバーしているカーソルがD&Dエリアを出たとき実行
-        uploadArea.addEventListener('dragleave', (event) => {
-            event.target.classList.remove('drag');
+        extentionWrapper.addEventListener('dragleave', (event) => {
+            removeDragClass();
         });
         //ドロップされたとき実行
-        uploadArea.addEventListener('drop', (event) => {
-            event.target.classList.remove('drag');
+        extentionWrapper.addEventListener('drop', (event) => {
+            removeDragClass();
             event.preventDefault();
             let input = document.querySelectorAll('input[type="file"]');
 
             const files = event.dataTransfer.files;
             const items = event.dataTransfer.items;
-            console.log(event.dataTransfer.items[0].webkitGetAsEntry());
-            console.log(event.dataTransfer.files);
 
             // ディレクトリがアップロードされていないかチェック
             // AIMS側がディレクトリごと渡されることを想定していない可能性があるため
             uploadAreaMessage.innerHTML = '';
             for (let item of items) {
-                console.log(item);
                 if (item.webkitGetAsEntry().isDirectory) {
                     uploadAreaMessage.innerHTML = 'フォルダーをアップロードすることはできません。';
                     return;
