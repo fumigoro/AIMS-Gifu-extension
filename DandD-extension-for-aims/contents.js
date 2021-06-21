@@ -86,12 +86,8 @@ if (location.href.indexOf('assignments') != -1) {
                     filesIndex++;
                 }
             }
-
         });
-
     });
-
-
 };
 
 /**
