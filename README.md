@@ -1,8 +1,8 @@
 # AIMS-Gifu-extension
 
-国立大学法人東海国立大学機構 岐阜大学で運用されているLMS「AIMS-Gifu」ユーザー向けの拡張機能。
-この拡張機能を使用すると課題ページでファイルをドラッグアンドドロップでアップロードすることができる。
-詳細は下記記事をご参照ください。
+所属大学で運用されているLMS「AIMS-Gifu」ユーザー向けの拡張機能。
+ファイルの一括ダウンロードができない！課題のアップロードが不便！みたいな、ちょっとした不便を解消する便利機能を詰め合わせた。
+Chrome Web Storeにて公開中！
 
 ### ストアページ
 [AIMS Gifu Extension](https://chrome.google.com/webstore/detail/drag-and-drop-extension-f/klbkinefgmmgbfgdblaflhcfobacebpn?hl=ja&authuser=0)
